@@ -3,8 +3,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/16/Stats.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    
     <style>
       body {
         margin: 0;
@@ -15,22 +15,106 @@
         width: 100%;
         height: 100%;
       }
+      #redirect-button {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        z-index: 10000;
+        display: block; 
+      }
+      #top-text {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-family: sans-serif;
+        text-align: center;
+        z-index: 10000;
+        /* Cambios: Agrandar el texto y ponerlo en mayúsculas */
+        font-size: 1.8rem;
+        text-transform: uppercase;
+      }
+      #bottom-logos {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000;
+        display: flex;
+        gap: 10px;
+      }
+      #bottom-logos img {
+        /* Cambios: Agrandar un poco los logos */
+        width: 60px;
+        height: 60px;
+      }
     </style>
   </head>
   <body>
+    <div id="top-text">ESCANEÁ EL LOGO DE LA ESCUELA</div>
+
+    <div id="bottom-logos">
+      <img src="./logo1.png" alt="Logo 1">
+      <img src="./logo2.png" alt="Logo 2">
+    </div>
+
+    <button id="redirect-button">Visitar Web</button>
+
     <div class="example-container">
-      <a-scene mindar-image="imageTargetSrc: ./targets.mind; showStats: true;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <a-scene 
+        mindar-image="imageTargetSrc: ./targets.mind;" 
+        embedded 
+        color-space="sRGB" 
+        renderer="colorManagement: true, physicallyCorrectLights" 
+        vr-mode-ui="enabled: false" 
+        device-orientation-permission-ui="enabled: false"
+      >
         <a-assets>
           <img id="card" src="./foto.png" />
         </a-assets>
 
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-entity mindar-image-target="targetIndex: 0" id="marker-handler"></a-entity>
 
-        <a-entity mindar-image-target="targetIndex: 0">
-          <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-
-        </a-entity>
+        <a-camera position="0 0 0" look-controls="enabled: false">
+          <a-plane 
+            src="#card" 
+            position="0 0 -1" 
+            height="0.552" 
+            width="1" 
+            rotation="0 0 0"
+            opacity="0"
+          ></a-plane>
+        </a-camera>
       </a-scene>
     </div>
+
+    <script>
+      const redirectButton = document.getElementById('redirect-button');
+      redirectButton.addEventListener('click', function() {
+        window.location.href = 'https://www.google.com';
+      });
+
+      const markerHandler = document.getElementById('marker-handler');
+      const fixedImage = document.querySelector('a-camera a-plane');
+
+      markerHandler.addEventListener('targetFound', function() {
+        fixedImage.setAttribute('opacity', '1');
+      });
+
+      markerHandler.addEventListener('targetLost', function() {
+        fixedImage.setAttribute('opacity', '0');
+      });
+    </script>
   </body>
 </html>
