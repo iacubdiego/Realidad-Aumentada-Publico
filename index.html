@@ -60,12 +60,12 @@
     </style>
   </head>
   <body>
-    <div id="top-text">Escanea el logo de la escuela</div>
+    <div id="top-text">ESCANEA EL LOGO DE LA ESCUELA</div>
     <div id="bottom-logos">
       <img src="./ruta/del/logo1.png" alt="Logo 1">
       <img src="./ruta/del/logo2.png" alt="Logo 2">
     </div>
-    <button id="redirect-button">Visitar Web</button>
+    <button id="redirect-button">VISITAR WEB</button>
 
     <div class="example-container">
       <a-scene 
@@ -90,7 +90,7 @@
             height="0.552" 
             width="1" 
             rotation="0 0 0"
-            opacity="0"
+            visible="false"
           ></a-plane>
         </a-camera>
       </a-scene>
@@ -105,14 +105,14 @@
 
       // Lógica para mostrar/ocultar la imagen fija
       const markerHandler = document.getElementById('marker-handler');
-      const fixedImage = document.getElementById('fixed-image'); // Seleccionamos la imagen por su nuevo ID
+      const fixedImage = document.getElementById('fixed-image');
 
       markerHandler.addEventListener('targetFound', function() {
-        fixedImage.setAttribute('opacity', '1');
+        fixedImage.setAttribute('visible', true);
       });
 
       markerHandler.addEventListener('targetLost', function() {
-        fixedImage.setAttribute('opacity', '0');
+        fixedImage.setAttribute('visible', false);
       });
     </script>
   </body>
