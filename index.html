@@ -30,11 +30,6 @@
         z-index: 10000;
         display: block; 
       }
-      /* Aquí el CSS para controlar la visibilidad de la imagen */
-      .fixed-image {
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
     </style>
   </head>
   <body>
@@ -62,7 +57,7 @@
             height="0.552" 
             width="1" 
             rotation="0 0 0"
-            class="fixed-image"
+            opacity="0"
           ></a-plane>
         </a-camera>
       </a-scene>
@@ -77,7 +72,7 @@
 
       // Lógica para mostrar/ocultar la imagen fija
       const markerHandler = document.getElementById('marker-handler');
-      const fixedImage = document.querySelector('.fixed-image');
+      const fixedImage = document.querySelector('a-camera a-plane');
 
       markerHandler.addEventListener('targetFound', function() {
         fixedImage.setAttribute('opacity', '1');
