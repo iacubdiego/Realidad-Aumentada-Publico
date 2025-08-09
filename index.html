@@ -3,9 +3,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preload" href="https://aframe.io/releases/1.4.1/aframe.min.js" as="script">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/stats.js/16/Stats.min.js" as="script">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js" as="script">
-
+    
     <style>
       body {
         margin: 0;
@@ -41,8 +40,8 @@
         border-radius: 5px;
         font-size: 1rem;
         cursor: pointer;
-        z-index: 10000; /* Asegura que el botón esté sobre todo */
-        display: none; /* Oculto al inicio */
+        z-index: 10000;
+        display: none;
       }
     </style>
   </head>
@@ -52,15 +51,7 @@
     <button id="redirect-button">Visitar Web</button>
 
     <div class="example-container">
-      <a-scene 
-        mindar-image="imageTargetSrc: ./targets.mind; showStats: false;" 
-        embedded 
-        color-space="sRGB" 
-        renderer="colorManagement: true, physicallyCorrectLights" 
-        vr-mode-ui="enabled: false" 
-        device-orientation-permission-ui="enabled: false"
-        id="ar-scene"
-      >
+      <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-assets>
           <img id="card" src="./foto.png" />
         </a-assets>
@@ -72,33 +63,5 @@
         </a-entity>
       </a-scene>
     </div>
-
-    <script>
-      // Ocultar el logo de MindAR al cargar la escena
-      document.addEventListener('DOMContentLoaded', function() {
-        const arScene = document.getElementById('ar-scene');
-        arScene.addEventListener('mindar-image-loading', function() {
-          // Oculta la pantalla de carga cuando MindAR está listo
-          const loadingScreen = document.getElementById('loading-screen');
-          loadingScreen.style.display = 'none';
-        });
-
-        // Evento para el botón
-        const redirectButton = document.getElementById('redirect-button');
-        redirectButton.addEventListener('click', function() {
-          window.location.href = 'https://www.google.com'; // Cambia esta URL por la que desees
-        });
-
-        // Mostrar el botón cuando se detecta el marcador
-        const marker = document.querySelector('a-entity[mindar-image-target]');
-        marker.addEventListener('targetFound', function() {
-          redirectButton.style.display = 'block';
-        });
-
-        marker.addEventListener('targetLost', function() {
-          redirectButton.style.display = 'none';
-        });
-      });
-    </script>
   </body>
 </html>
