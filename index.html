@@ -30,9 +30,44 @@
         z-index: 10000;
         display: block; 
       }
+      #top-text {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-family: sans-serif;
+        text-align: center;
+        z-index: 10000;
+      }
+      #bottom-logos {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000;
+        display: flex;
+        gap: 10px;
+      }
+      #bottom-logos img {
+        width: 50px;
+        height: 50px;
+      }
+      .fixed-image {
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
+    <div id="top-text">Escanea el logo de la escuela</div>
+
+    <div id="bottom-logos">
+      <img src="./logo1.png" alt="Logo 1">
+      <img src="./logo2.png" alt="Logo 2">
+    </div>
+
     <button id="redirect-button">Visitar Web</button>
 
     <div class="example-container">
@@ -64,13 +99,11 @@
     </div>
 
     <script>
-      // Lógica del botón para redirigir
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
-        window.location.href = 'https://www.google.com';
+        window.location.href = 'https://www.gcoop.coop';
       });
 
-      // Lógica para mostrar/ocultar la imagen fija
       const markerHandler = document.getElementById('marker-handler');
       const fixedImage = document.querySelector('a-camera a-plane');
 
