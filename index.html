@@ -91,6 +91,8 @@
             width="1" 
             rotation="0 0 0"
             visible="false"
+            animation__show="property: visible; from: false; to: true; startEvents: markerFound"
+            animation__hide="property: visible; from: true; to: false; startEvents: markerLost"
           ></a-plane>
         </a-camera>
       </a-scene>
@@ -101,18 +103,6 @@
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
         window.location.href = 'https://www.google.com';
-      });
-
-      // Lógica para mostrar/ocultar la imagen fija
-      const markerHandler = document.getElementById('marker-handler');
-      const fixedImage = document.getElementById('fixed-image');
-
-      markerHandler.addEventListener('targetFound', function() {
-        fixedImage.setAttribute('visible', true);
-      });
-
-      markerHandler.addEventListener('targetLost', function() {
-        fixedImage.setAttribute('visible', false);
       });
     </script>
   </body>
