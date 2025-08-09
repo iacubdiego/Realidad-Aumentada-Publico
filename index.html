@@ -3,45 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realidad Aumentada con EFRAME</title>
+    <title>Realidad Aumentada con A-Frame y AR.js</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://aframe.io/aframe-ar.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-            padding: 20px;
-        }
-        #content {
-            display: none; /* Oculto hasta que se escanee el marcador */
+            margin: 0;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-    <h1>Escanea el Marcador</h1>
-    <div id="content">
-        <h2>¡Marcador Detectado!</h2>
-        <img id="photo" src="./foto.jpg" alt="Foto" style="max-width: 100%;">
-    </div>
-
-    <script src="https://eframe.com/sdk.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            if (typeof EFRAME !== 'undefined') {
-                EFRAME.initialize({
-                    onMarkerDetected: function() {
-                        document.getElementById('content').style.display = 'block';
-                    },
-                    onMarkerLost: function() {
-                        document.getElementById('content').style.display = 'none';
-                    }
-                });
-
-                // Configura el marcador
-                EFRAME.addMarker('./foto.jpg');
-            } else {
-                console.error("EFRAME no está definido. Verifica la carga del SDK.");
-            }
-        });
-    </script>
+    <a-scene embedded arjs>
+        <a-marker url="./marcador.patt"> <!-- Cambia esta ruta -->
+            <a-text value="¡Marcador Detectado!" color="black" position="0 0.5 0"></a-text>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
 </body>
 </html>
