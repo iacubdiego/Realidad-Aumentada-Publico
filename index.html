@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realidad Aumentada con A-Frame y AR.js</title>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="https://aframe.io/aframe-master.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/distmindar-image-aframe.prod.js"></script>
     <style>
         body {
             margin: 0;
@@ -15,7 +15,8 @@
 </head>
 <body>
     <a-scene embedded arjs>
-        <a-marker url="./pattern-marker.patt"> <!-- Cambia esta ruta -->
+        <a-camera psoition="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-marker url="./pattern-marker.patt">
             <a-text value="¡Marcador Detectado!" color="black" position="0 0.5 0"></a-text>
         </a-marker>
         <a-entity camera></a-entity>
