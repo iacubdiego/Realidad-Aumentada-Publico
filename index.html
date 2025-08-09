@@ -80,21 +80,17 @@
           <img id="card" src="./foto.png" />
         </a-assets>
 
-        <a-entity mindar-image-target="targetIndex: 0" id="marker-handler"></a-entity>
-
-        <a-camera position="0 0 0" look-controls="enabled: false">
+        <a-entity mindar-image-target="targetIndex: 0">
           <a-plane 
-            id="fixed-image" 
             src="#card" 
-            position="0 0 -1" 
+            position="0 0 0" 
             height="0.552" 
             width="1" 
             rotation="0 0 0"
-            visible="false"
-            animation__show="property: visible; from: false; to: true; startEvents: markerFound"
-            animation__hide="property: visible; from: true; to: false; startEvents: markerLost"
           ></a-plane>
-        </a-camera>
+        </a-entity>
+
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       </a-scene>
     </div>
 
@@ -104,6 +100,7 @@
       redirectButton.addEventListener('click', function() {
         window.location.href = 'https://www.google.com';
       });
+      // Ya no es necesario el script para la foto, A-Frame lo gestiona por sí mismo.
     </script>
   </body>
 </html>
