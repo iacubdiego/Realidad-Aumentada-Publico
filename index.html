@@ -42,6 +42,9 @@
         font-family: sans-serif;
         text-align: center;
         z-index: 10000;
+        /* Cambios: Agrandar el texto y ponerlo en mayúsculas */
+        font-size: 1.8rem;
+        text-transform: uppercase;
       }
       #bottom-logos {
         position: absolute;
@@ -52,16 +55,14 @@
         gap: 10px;
       }
       #bottom-logos img {
-        width: 50px;
-        height: 50px;
-      }
-      .fixed-image {
-        opacity: 0;
+        /* Cambios: Agrandar un poco los logos */
+        width: 60px;
+        height: 60px;
       }
     </style>
   </head>
   <body>
-    <div id="top-text">Escanea el logo de la escuela</div>
+    <div id="top-text">ESCANEÁ EL LOGO DE LA ESCUELA</div>
 
     <div id="bottom-logos">
       <img src="./logo1.png" alt="Logo 1">
@@ -101,7 +102,7 @@
     <script>
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
-        window.location.href = 'https://www.gcoop.coop';
+        window.location.href = 'https://www.google.com';
       });
 
       const markerHandler = document.getElementById('marker-handler');
