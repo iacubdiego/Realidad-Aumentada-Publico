@@ -52,7 +52,6 @@
         z-index: 10000;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
       }
       #bottom-logos img {
         width: 60px;
@@ -64,8 +63,8 @@
   <body>
     <div id="top-text">ESCANEA EL LOGO DE LA ESCUELA</div>
     <div id="bottom-logos">
-      <img src="./ruta/del/logo1.png" alt="Logo 1">
-      <img src="./ruta/del/logo2.png" alt="Logo 2">
+      <img src="./logo1.png" alt="Logo 1">
+      <img src="./logo2.png" alt="Logo 2">
     </div>
     <button id="redirect-button">VISITAR WEB</button>
 
@@ -82,45 +81,24 @@
           <img id="card" src="./foto.png" />
         </a-assets>
 
-        <a-entity mindar-image-target="targetIndex: 0" id="marker-handler"></a-entity>
-
-        <a-camera position="0 0 0" look-controls="enabled: false">
+        <a-entity mindar-image-target="targetIndex: 0">
           <a-plane 
-            id="fixed-image" 
             src="#card" 
-            position="0 0 -1" 
-            height="0.5" 
-            width="0.5" 
+            position="0 0 0" 
+            height="0.552" 
+            width="1" 
             rotation="0 0 0"
-            visible="false"
           ></a-plane>
-        </a-camera>
+        </a-entity>
+
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       </a-scene>
     </div>
 
     <script>
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
-        window.location.href = 'https://www.google.com';
-      });
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const markerHandler = document.getElementById('marker-handler');
-        const fixedImage = document.getElementById('fixed-image');
-        
-        if (markerHandler && fixedImage) {
-          markerHandler.addEventListener('targetFound', function() {
-            console.log("EVENTO: Marcador encontrado. Intentando mostrar la imagen...");
-            fixedImage.setAttribute('visible', 'true');
-            console.log("Nuevo estado de la imagen (visible):", fixedImage.getAttribute('visible'));
-          });
-
-          markerHandler.addEventListener('targetLost', function() {
-            console.log("EVENTO: Marcador perdido. Intentando ocultar la imagen...");
-            fixedImage.setAttribute('visible', 'false');
-            console.log("Nuevo estado de la imagen (visible):", fixedImage.getAttribute('visible'));
-          });
-        }
+        window.location.href = 'https://www.gcoop.coop';
       });
     </script>
   </body>
