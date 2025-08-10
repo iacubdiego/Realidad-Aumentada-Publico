@@ -81,7 +81,7 @@
           <img id="card" src="./foto.png" />
         </a-assets>
 
-        <a-entity mindar-image-target="targetIndex: 0">
+        <a-entity mindar-image-target="targetIndex: 0" id="marker-handler">
           <a-plane
             id="card-plane"
             src="#card"
@@ -90,7 +90,6 @@
             width="2"
             rotation="0 0 0"
             opacity="0"
-            animation="property: opacity; to: 1; dur: 1000; delay: 500"
           ></a-plane>
         </a-entity>
 
@@ -102,6 +101,30 @@
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
         window.location.href = 'https://www.gcoop.coop';
+      });
+
+      // Lógica para la animación de la foto controlada por JavaScript
+      document.addEventListener('DOMContentLoaded', () => {
+        const markerHandler = document.getElementById('marker-handler');
+        const cardPlane = document.getElementById('card-plane');
+
+        markerHandler.addEventListener('targetFound', function() {
+          console.log("Marcador encontrado. Iniciando animación...");
+          cardPlane.setAttribute('animation', {
+            property: 'opacity',
+            to: 1,
+            dur: 1000
+          });
+        });
+
+        markerHandler.addEventListener('targetLost', function() {
+          console.log("Marcador perdido. Ocultando imagen...");
+          cardPlane.setAttribute('animation', {
+            property: 'opacity',
+            to: 0,
+            dur: 1000
+          });
+        });
       });
     </script>
   </body>
