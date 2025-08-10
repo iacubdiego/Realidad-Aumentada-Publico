@@ -50,20 +50,21 @@
         bottom: 20px;
         right: 20px;
         z-index: 10000;
-        display: flex;
-        gap: 10px;
+        /* Cambio clave: para que los logos se apilen verticalmente */
+        display: block;
       }
       #bottom-logos img {
         width: 60px;
         height: 60px;
+        margin-bottom: 10px; /* Espacio entre los logos */
       }
     </style>
   </head>
   <body>
-    <div id="top-text">HOLA AMOR!!!</div>
+    <div id="top-text">ESCANEA EL LOGO DE LA ESCUELA</div>
     <div id="bottom-logos">
-      <img src="./logo1.png" alt="Logo 1">
-      <img src="./logo2.png" alt="Logo 2">
+      <img src="./ruta/del/logo1.png" alt="Logo 1">
+      <img src="./ruta/del/logo2.png" alt="Logo 2">
     </div>
     <button id="redirect-button">VISITAR WEB</button>
 
@@ -95,12 +96,10 @@
     </div>
 
     <script>
-      // Lógica para el botón de redirección
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
         window.location.href = 'https://www.google.com';
       });
-      // Ya no es necesario el script para la foto, A-Frame lo gestiona por sí mismo.
     </script>
   </body>
 </html>
