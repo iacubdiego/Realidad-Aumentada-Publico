@@ -64,8 +64,8 @@
   <body>
     <div id="top-text">ESCANEA EL LOGO DE LA ESCUELA</div>
     <div id="bottom-logos">
-      <img src="./logo1.png" alt="Logo 1">
-      <img src="./logo2.png" alt="Logo 2">
+      <img src="./ruta/del/logo1.png" alt="Logo 1">
+      <img src="./ruta/del/logo2.png" alt="Logo 2">
     </div>
     <button id="redirect-button">VISITAR WEB</button>
 
@@ -102,23 +102,35 @@
       // Lógica para el botón de redirección
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
-        window.location.href = 'https://www.gcoop.coop';
+        window.location.href = 'https://www.google.com';
       });
 
       // Lógica para mostrar/ocultar la imagen fija
       document.addEventListener('DOMContentLoaded', () => {
+        console.log("DOM Cargado. Buscando elementos...");
         const markerHandler = document.getElementById('marker-handler');
         const fixedImage = document.getElementById('fixed-image');
         
-        markerHandler.addEventListener('targetFound', function() {
-          console.log("Marcador encontrado");
-          fixedImage.setAttribute('visible', 'true');
-        });
+        console.log("Elemento 'markerHandler' encontrado:", !!markerHandler);
+        console.log("Elemento 'fixedImage' encontrado:", !!fixedImage);
+        
+        if (markerHandler && fixedImage) {
+          markerHandler.addEventListener('targetFound', function() {
+            console.log("EVENTO: Marcador encontrado. Intentando mostrar la imagen...");
+            console.log("Estado actual de la imagen (visible):", fixedImage.getAttribute('visible'));
+            fixedImage.setAttribute('visible', 'true');
+            console.log("Nuevo estado de la imagen (visible):", fixedImage.getAttribute('visible'));
+          });
 
-        markerHandler.addEventListener('targetLost', function() {
-          console.log("Marcador perdido");
-          fixedImage.setAttribute('visible', 'false');
-        });
+          markerHandler.addEventListener('targetLost', function() {
+            console.log("EVENTO: Marcador perdido. Intentando ocultar la imagen...");
+            console.log("Estado actual de la imagen (visible):", fixedImage.getAttribute('visible'));
+            fixedImage.setAttribute('visible', 'false');
+            console.log("Nuevo estado de la imagen (visible):", fixedImage.getAttribute('visible'));
+          });
+        } else {
+          console.error("ERROR: No se pudo encontrar el 'markerHandler' o 'fixedImage' en el DOM.");
+        }
       });
     </script>
   </body>
