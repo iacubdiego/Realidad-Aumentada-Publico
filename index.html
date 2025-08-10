@@ -52,6 +52,7 @@
         z-index: 10000;
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
       }
       #bottom-logos img {
         width: 60px;
@@ -81,25 +82,31 @@
           <img id="card" src="./foto.png" />
         </a-assets>
 
-        <a-entity mindar-image-target="targetIndex: 0">
-          <a-plane 
-            src="#card" 
-            position="0 0 0" 
-            height="0.552" 
-            width="1" 
-            rotation="0 0 0"
-          ></a-plane>
-        </a-entity>
+        <a-entity mindar-image-target="targetIndex: 0" id="marker-handler"></a-entity>
 
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        <a-camera position="0 0 0" look-controls="enabled: false">
+          <a-plane 
+            id="fixed-image" 
+            src="#card" 
+            position="0 0 -1" 
+            height="1.1" 
+            width="2" 
+            rotation="0 0 0"
+            visible="false"
+            animation__show="property: visible; from: false; to: true; startEvents: markerFound"
+            animation__hide="property: visible; from: true; to: false; startEvents: markerLost"
+          ></a-plane>
+        </a-camera>
       </a-scene>
     </div>
 
     <script>
+      // Lógica para el botón de redirección
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
         window.location.href = 'https://www.gcoop.coop';
       });
+      // El script para la visibilidad ya no es necesario aquí, la animación lo maneja.
     </script>
   </body>
 </html>
