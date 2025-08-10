@@ -88,9 +88,9 @@
           <a-plane 
             id="fixed-image" 
             src="#card" 
-            position="0 0 -1.5"
-            height="1.1" 
-            width="2" 
+            position="0 0 -1" 
+            height="0.5" 
+            width="0.5" 
             rotation="0 0 0"
             visible="false"
           ></a-plane>
@@ -99,37 +99,27 @@
     </div>
 
     <script>
-      // Lógica para el botón de redirección
       const redirectButton = document.getElementById('redirect-button');
       redirectButton.addEventListener('click', function() {
         window.location.href = 'https://www.google.com';
       });
 
-      // Lógica para mostrar/ocultar la imagen fija
       document.addEventListener('DOMContentLoaded', () => {
-        console.log("DOM Cargado. Buscando elementos...");
         const markerHandler = document.getElementById('marker-handler');
         const fixedImage = document.getElementById('fixed-image');
-        
-        console.log("Elemento 'markerHandler' encontrado:", !!markerHandler);
-        console.log("Elemento 'fixedImage' encontrado:", !!fixedImage);
         
         if (markerHandler && fixedImage) {
           markerHandler.addEventListener('targetFound', function() {
             console.log("EVENTO: Marcador encontrado. Intentando mostrar la imagen...");
-            console.log("Estado actual de la imagen (visible):", fixedImage.getAttribute('visible'));
             fixedImage.setAttribute('visible', 'true');
             console.log("Nuevo estado de la imagen (visible):", fixedImage.getAttribute('visible'));
           });
 
           markerHandler.addEventListener('targetLost', function() {
             console.log("EVENTO: Marcador perdido. Intentando ocultar la imagen...");
-            console.log("Estado actual de la imagen (visible):", fixedImage.getAttribute('visible'));
             fixedImage.setAttribute('visible', 'false');
             console.log("Nuevo estado de la imagen (visible):", fixedImage.getAttribute('visible'));
           });
-        } else {
-          console.error("ERROR: No se pudo encontrar el 'markerHandler' o 'fixedImage' en el DOM.");
         }
       });
     </script>
