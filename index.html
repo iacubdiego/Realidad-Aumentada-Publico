@@ -88,7 +88,7 @@
           <a-plane 
             id="fixed-image" 
             src="#card" 
-            position="0 0 -1" 
+            position="0 0 -1.5"
             height="1.1" 
             width="2" 
             rotation="0 0 0"
@@ -108,16 +108,16 @@
       // Lógica para mostrar/ocultar la imagen fija
       document.addEventListener('DOMContentLoaded', () => {
         const markerHandler = document.getElementById('marker-handler');
-        const fixedImage = document.getElementById('fixed-image'); // Usamos el ID para una selección fiable
+        const fixedImage = document.getElementById('fixed-image');
         
         markerHandler.addEventListener('targetFound', function() {
           console.log("Marcador encontrado");
-          fixedImage.setAttribute('visible', 'true'); // El cambio sutil: usar 'true' como string
+          fixedImage.setAttribute('visible', 'true');
         });
 
         markerHandler.addEventListener('targetLost', function() {
           console.log("Marcador perdido");
-          fixedImage.setAttribute('visible', 'false'); // Y 'false' como string
+          fixedImage.setAttribute('visible', 'false');
         });
       });
     </script>
