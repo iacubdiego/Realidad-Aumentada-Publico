@@ -98,33 +98,46 @@
     </div>
 
     <script>
-      const redirectButton = document.getElementById('redirect-button');
-      redirectButton.addEventListener('click', function() {
-        window.location.href = 'https://www.gcoop.coop';
-      });
+      // Lógica principal de la aplicación, se ejecuta cuando el DOM está listo
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("La página ha cargado completamente. Preparando la lógica de AR...");
+        
+        // Obtenemos la referencia a la escena y al sistema de AR
+        const sceneEl = document.querySelector('a-scene');
+        const arSystem = sceneEl.systems["mindar-image-system"];
 
-      // Lógica para la animación de la foto controlada por JavaScript
-      document.addEventListener('DOMContentLoaded', () => {
+        // Obtenemos las referencias a los elementos 3D
         const markerHandler = document.getElementById('marker-handler');
         const cardPlane = document.getElementById('card-plane');
 
+        // Escuchamos el evento cuando MindAR encuentra el marcador
         markerHandler.addEventListener('targetFound', function() {
-          console.log("Marcador encontrado. Iniciando animación...");
+          console.log("EVENTO: Marcador encontrado. Animando la foto para que aparezca...");
           cardPlane.setAttribute('animation', {
             property: 'opacity',
             to: 1,
-            dur: 1000
+            dur: 1000 // Aparece en 1 segundo
           });
+          console.log("INFO: El atributo 'opacity' se está animando a 1.");
         });
 
+        // Escuchamos el evento cuando MindAR pierde el marcador
         markerHandler.addEventListener('targetLost', function() {
-          console.log("Marcador perdido. Ocultando imagen...");
+          console.log("EVENTO: Marcador perdido. Animando la foto para que desaparezca lentamente...");
           cardPlane.setAttribute('animation', {
             property: 'opacity',
             to: 0,
-            dur: 1000
+            dur: 3000 // Desaparece en 3 segundos (3000 ms)
           });
+          console.log("INFO: El atributo 'opacity' se está animando a 0 en 3 segundos.");
         });
+      });
+
+      // Lógica para el botón de redirección de la UI (está al final, pero funciona igual)
+      const redirectButton = document.getElementById('redirect-button');
+      redirectButton.addEventListener('click', function() {
+        console.log("Botón de redirección presionado. Redirigiendo a gcoop.coop...");
+        window.location.href = 'https://www.gcoop.coop';
       });
     </script>
   </body>
