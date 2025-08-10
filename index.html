@@ -86,15 +86,12 @@
 
         <a-camera position="0 0 0" look-controls="enabled: false">
           <a-plane 
-            id="fixed-image" 
             src="#card" 
             position="0 0 -1" 
             height="1.1" 
             width="2" 
             rotation="0 0 0"
             visible="false"
-            animation__show="property: visible; from: false; to: true; startEvents: markerFound"
-            animation__hide="property: visible; from: true; to: false; startEvents: markerLost"
           ></a-plane>
         </a-camera>
       </a-scene>
@@ -106,7 +103,22 @@
       redirectButton.addEventListener('click', function() {
         window.location.href = 'https://www.gcoop.coop';
       });
-      // El script para la visibilidad ya no es necesario aquí, la animación lo maneja.
+
+      // Lógica para mostrar/ocultar la imagen fija con un selector más fiable
+      document.addEventListener('DOMContentLoaded', () => {
+        const markerHandler = document.getElementById('marker-handler');
+        const fixedImage = document.querySelector('a-camera a-plane');
+        
+        markerHandler.addEventListener('targetFound', function() {
+          console.log("Marcador encontrado");
+          fixedImage.setAttribute('visible', true);
+        });
+
+        markerHandler.addEventListener('targetLost', function() {
+          console.log("Marcador perdido");
+          fixedImage.setAttribute('visible', false);
+        });
+      });
     </script>
   </body>
 </html>
